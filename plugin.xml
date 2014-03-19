@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.feedhenry.plugins.api.v2"
+    version="0.0.1">
+    <name>FH Legacy JS API</name>
+    <description>Deprecated $fh APIs.</description>
+    <license>MIT</license>
+    <keywords>FeedHenry, API</keywords>
+    
+    <!-- see http://cordova.apache.org/docs/en/3.0.0/plugin_ref_spec.md.html#Plugin%20Specification for element details-->
+
+    <js-module src="www/fhapi_v2.js" name="FHAPI_V2">
+      <merges target="$fh" />
+    </js-module>
+</plugin>
