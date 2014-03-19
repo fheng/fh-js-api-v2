@@ -2,4 +2,4 @@ This repo contains implementation of deprecated $fh APIs. They are only used by 
 
 It DOES depend on FeedHenry JS SDK. Please make sure it's loaded AFTER FeedHenry JS SDK.
 
-NOTE: Most of the on device APIs are not implemented in this repo, e.g. $fh.geo, $fh.cam. You probably need to add the plugin in [this repo](https://github.com/fheng/fh-cordova-plugins-api) as well.
+NOTE: Most of the on device APIs are not implemented in this repo, e.g. $fh.cam. You probably need to add the plugin in [this repo](https://github.com/fheng/fh-cordova-plugins-api) as well.

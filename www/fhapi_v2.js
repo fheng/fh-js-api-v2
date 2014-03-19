@@ -1222,6 +1222,89 @@ var getQueryParamValue=deconcept.util.getRequestParameter;var FlashObject=deconc
     });
   };
 
+  $fh.__webview_win = undefined;
+  $fh.__dest__.webview = function (p, s, f) {
+    if (!('act' in p) || p.act === 'open') {
+      if (!p.url) {
+        f('no_url');
+        return;
+      }
+      var old_url = p.url;
+      $fh.__webview_win = window.open(p.url, '_blank');
+      s("opened");
+    } else {
+      if (p.act === 'close') {
+        if (typeof $fh.__webview_win != 'undefined') {
+          $fh.__webview_win.close();
+          $fh.__webview_win = undefined;
+        }
+        s("closed");
+      }
+    }
+  };
+
+  $fh.__dest__.geo = function (p, s, f) {
+    if (typeof navigator.geolocation != 'undefined') {
+      if (!p.act || p.act == "register") {
+        if ($fh.__dest__._geoWatcher) {
+          f('geo_inuse', {}, p);
+          return;
+        }
+        if (p.interval == 0) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            var coords = position.coords;
+            var resdata = {
+              lon: coords.longitude,
+              lat: coords.latitude,
+              alt: coords.altitude,
+              acc: coords.accuracy,
+              head: coords.heading,
+              speed: coords.speed,
+              when: position.timestamp
+            };
+            s(resdata);
+          }, function () {
+            f('error_geo', {}, p);
+          })
+        };
+        if (p.interval > 0) {
+          var internalWatcher = navigator.geolocation.watchPosition(function (position) {
+            var coords = position.coords;
+            var resdata = {
+              lon: coords.longitude,
+              lat: coords.latitude,
+              alt: coords.altitude,
+              acc: coords.accuracy,
+              head: coords.heading,
+              speed: coords.speed,
+              when: position.timestamp
+            };
+            s(resdata);
+          }, function () {
+            f('error_geo', {}, p);
+          }, {
+            frequency: p.interval
+          });
+          $fh.__dest__._geoWatcher = internalWatcher;
+        };
+      } else if (p.act == "unregister") {
+        if ($fh.__dest__._geoWatcher) {
+          navigator.geolocation.clearWatch($fh.__dest__._geoWatcher);
+          $fh.__dest__._geoWatcher = undefined;
+        };
+        s();
+      } else {
+        f('geo_badact', {}, p);
+      }
+    } else {
+      f('geo_nosupport', {}, p);
+    }
+  };
+  
+  $fh.__dest__.acc = function(p,s,f) {
+    s({ x:(Math.random()*4)-2, y:(Math.random()*4)-2, z:(Math.random()*4)-2, when:new Date().getTime() });
+  }
+
   root.$fh = $fh;
 
 })(this);
