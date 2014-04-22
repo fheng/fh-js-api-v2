@@ -656,7 +656,12 @@
             gears: {
                 size: -1,
                 test: function() {
-                    return (window.google && window.google.gears) ? true : false;
+                    try{
+                      return (window.google && window.google.gears) ? true : false;
+                    }catch(e){
+                      return false;
+                    }
+                    
                 },
                 methods: {
                     transaction: function(fn) {
@@ -717,13 +722,18 @@
             whatwg_db: {
                 size: 200 * 1024,
                 test: function() {
-                    var name = 'PersistJS Test',
+                    try{
+                      var name = 'PersistJS Test',
                         desc = 'Persistent database test.';
-                    if (!window.openDatabase)
-                        return false;
-                    if (!window.openDatabase(name, C.sql.version, desc, B.whatwg_db.size))
-                        return false;
-                    return true;
+                        if (!window.openDatabase)
+                            return false;
+                        if (!window.openDatabase(name, C.sql.version, desc, B.whatwg_db.size))
+                            return false;
+                        return true;
+                    }catch(e){
+                      return false;
+                    }
+                    
                 },
                 methods: {
                     transaction: function(fn) {
@@ -791,7 +801,11 @@
             globalstorage: {
                 size: 5 * 1024 * 1024,
                 test: function() {
-                    return window.globalStorage ? true : false;
+                    try{
+                      return window.globalStorage ? true : false;
+                    }catch(e){
+                      return false;
+                    }
                 },
                 methods: {
                     key: function(key) {
@@ -825,7 +839,12 @@
             localstorage: {
                 size: -1,
                 test: function() {
-                    return window.localStorage ? true : false;
+                    try{
+                        return window.localStorage ? true : false;
+                    }catch(e){
+                        return false;
+                    }
+                    
                 },
                 methods: {
                     key: function(key) {
@@ -859,7 +878,12 @@
                 prefix: '_persist_data-',
                 size: 64 * 1024,
                 test: function() {
-                    return window.ActiveXObject ? true : false;
+                    try{
+                        return window.ActiveXObject ? true : false;
+                    }catch(e){
+                        return false;
+                    }
+                    
                 },
                 make_userdata: function(id) {
                     var el = document.createElement('div');
@@ -917,7 +941,12 @@
                 delim: ':',
                 size: 4000,
                 test: function() {
-                    return P.Cookie.enabled ? true : false;
+                    try{
+                        return P.Cookie.enabled ? true : false;
+                    }catch(e){
+                        return false;
+                    }
+                    
                 },
                 methods: {
                     key: function(key) {
@@ -947,10 +976,15 @@
             },
             flash: {
                 test: function() {
-                    if (!deconcept || !deconcept.SWFObjectUtil)
+                    try{
+                        if (!deconcept || !deconcept.SWFObjectUtil)
                         return false;
-                    var major = deconcept.SWFObjectUtil.getPlayerVersion().major;
-                    return (major >= 8) ? true : false;
+                        var major = deconcept.SWFObjectUtil.getPlayerVersion().major;
+                        return (major >= 8) ? true : false;
+                    }catch(e){
+                        return false;
+                    }
+                    
                 },
                 methods: {
                     init: function() {
@@ -1278,7 +1312,7 @@
     //!!!lib end!!!
 
     var $fh = root.$fh || {};
-    if (fh_app_props) {
+    if (typeof fh_app_props === "object") {
         $fh.app_props = fh_app_props;
     }
 
