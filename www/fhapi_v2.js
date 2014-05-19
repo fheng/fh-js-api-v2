@@ -2098,4 +2098,18 @@
 
   root.$fh = $fh;
 
+  // Override $fh.ready in legacy apps to hook into fhinit event
+  root.$fh.ready = $fh.ready = function(opts, cb) {
+    var callback;
+    if (typeof opts === 'function') {
+      callback = opts;
+    } else if(typeof cb === 'function') {
+      callback = cb;
+    }
+    
+    root.$fh.on('fhinit', function() {
+      return callback();
+    });
+  }
+
 })(this);
