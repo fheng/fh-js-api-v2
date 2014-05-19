@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="com.feedhenry.plugins.api.v2"
-    version="0.0.1">
+    version="0.0.2">
     <name>FH Legacy JS API</name>
     <description>Deprecated $fh APIs.</description>
     <license>MIT</license>
