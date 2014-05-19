@@ -2098,7 +2098,8 @@
 
   root.$fh = $fh;
 
-  // Override $fh.ready in legacy apps to hook into fhinit event
+  // Override $fh.ready in legacy apps to hook into fhconfigloaded event
+  // So appprops is available
   root.$fh.ready = $fh.ready = function(opts, cb) {
     var callback;
     if (typeof opts === 'function') {
@@ -2107,7 +2108,7 @@
       callback = cb;
     }
     
-    root.$fh.on('fhinit', function() {
+    root.$fh.on('fhconfigloaded', function() {
       return callback();
     });
   }
