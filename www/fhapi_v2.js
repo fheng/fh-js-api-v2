@@ -2107,6 +2107,10 @@
     } else if(typeof cb === 'function') {
       callback = cb;
     }
+
+    if (root.$fh.app_props.local) {
+      return callback();
+    }
     
     root.$fh.on('fhconfigloaded', function() {
       return callback();
