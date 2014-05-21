@@ -2108,7 +2108,7 @@
       callback = cb;
     }
 
-    if (root.$fh.app_props.local) {
+    if (root.$fh.app_props && root.$fh.app_props.local) {
       return callback();
     }
     
