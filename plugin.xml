@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="com.feedhenry.plugins.api.v2"
-    version="0.0.1">
+    version="0.1.0">
     <name>FH Legacy JS API</name>
     <description>Deprecated $fh APIs.</description>
     <license>MIT</license>
@@ -13,4 +13,40 @@
     <js-module src="www/fhapi_v2.js" name="FHAPI_V2">
       <merges target="$fh" />
     </js-module>
+
+    <platform name="wp7">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+          <merges target="$fh" />
+        </js-module>
+        <js-module src="www/wp/fhapi.js" name="FHAPI_WP7">
+            <merges target="$fh" />
+        </js-module>
+    </platform>
+
+    <platform name="wp8">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+          <merges target="$fh" />
+        </js-module>
+        <js-module src="www/wp/fhapi.js" name="FHAPI_WP8">
+            <merges target="$fh" />
+        </js-module>
+    </platform>
+
+    <platform name="ios">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+          <merges target="$fh" />
+        </js-module>
+        <js-module src="www/ios/fhapi.js" name="FHAPI_IOS">
+          <merges target="$fh" />
+        </js-module>
+    </platform>
+
+    <platform name="android">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+          <merges target="$fh" />
+        </js-module>
+        <js-module src="www/android/fhapi.js" name="FHAPI_ANDROID">
+            <merges target="$fh" />
+        </js-module>
+    </platform>
 </plugin>
