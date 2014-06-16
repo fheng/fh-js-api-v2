@@ -15,7 +15,7 @@
     </js-module>
 
     <platform name="wp7">
-        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI_V2_DEVICE">
           <merges target="$fh" />
         </js-module>
         <js-module src="www/wp/fhapi.js" name="FHAPI_WP7">
@@ -24,7 +24,7 @@
     </platform>
 
     <platform name="wp8">
-        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI_V2_DEVICE">
           <merges target="$fh" />
         </js-module>
         <js-module src="www/wp/fhapi.js" name="FHAPI_WP8">
@@ -33,7 +33,7 @@
     </platform>
 
     <platform name="ios">
-        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI_V2_DEVICE">
           <merges target="$fh" />
         </js-module>
         <js-module src="www/ios/fhapi.js" name="FHAPI_IOS">
@@ -42,7 +42,7 @@
     </platform>
 
     <platform name="android">
-        <js-module src="www/fhapi_v2_device.js" name="FHAPI">
+        <js-module src="www/fhapi_v2_device.js" name="FHAPI_V2_DEVICE">
           <merges target="$fh" />
         </js-module>
         <js-module src="www/android/fhapi.js" name="FHAPI_ANDROID">
